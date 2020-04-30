@@ -1,0 +1,12 @@
+First2Finish;First2Finish;Cloud Hub - Errors;30055549;Cloud Hub has implemented Honeybadger for error tracking, but no events are being sent to the service. We would like to track both code related errors and swagger schema errors if possible.;['Node.js']
+Code;Code;Cloud Hub - camelCase;30055550;Cloud Hub has decided to make some changes to how we want to display and accept data from our APIs. Originally we were built on Mongo and everything was by default camelCase. We switched to Postgres recently and updated the data layer to use their standard snake_case naming conventions. This causes some issues on our side where we had both types in the API service layer and had to rename fields because of reserved words. In this challenge we want to consolidate this to a common format on both the API and web application. We want the API to use camelCase, but transform the objects to snake_case before using them in the service level code.<br />
+<br />
+<strong>Requirements</strong><br />
+1. Transform data sent to the API results to use camelCase, likely inside utils.processResponse.<br />
+2. Modify data sent to the API in the body to accept camelCase, but tranform these objects to snake_case before the code is sent to the service layer.<br />
+3. Update Postman file to use new camelCase objects.<br />
+4. Update tests to pass new format.<br />
+5. Update Web project to use camelCase properties.<br />
+<br />
+&nbsp;;['Node.js']
+Assembly Competition;Assembly Competition;Living Progress - Build - POL - Haven OnDemand Predictive Analytics Implementation;30055551;;

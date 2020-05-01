@@ -35,7 +35,7 @@ def getUser():
             count += 1
             # print(username)
             user_base = User(username)
-            if type(user_base) == dict:
+            if type(user_base) == dict and 'handle' in user_base.keys():
                 user = {}
                 skill = getUserSkill(username)
                 if type(skill['result']['content']) == dict:

@@ -38,7 +38,7 @@ def getUser():
             if type(user_base) == dict and 'handle' in user_base.keys():
                 user = {}
                 skill = getUserSkill(username)
-                if type(skill['result']['content']) == dict:
+                if (type(skill) == dict and type(skill['result']) == dict) and type(skill['result']['content']) == dict:
                     skill_dict = skill['result']['content']['skills']
                     skills = []
                     for key in skill_dict:

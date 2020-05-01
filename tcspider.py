@@ -8,7 +8,7 @@ import xlwt
 
 begin = 30055549
 end = 30095032
-# 测试存入txt
+# 测试存入txt文件
 def test():
     for challengeId in range(begin, end + 1, 1):
         print(challengeId)
@@ -42,29 +42,31 @@ def getChallenge():
                 if challengeId != end:
                     d.write(',')
                 d.write('\n')
-            # 爬取challenge注册信息，发布时间信息和提交信息
-            # chaReg = Challeng_Registrant(challengeId) # list
-            # chaTime = Challeng_Time(challengeId) # dict
-            # chaTime['challengeId'] = challengeId
-            # chaSub = Challeng_Submission(challengeId) # dict
-            # chaSub['challengeId'] = challengeId
-
-            # if chaReg != None:
-            #     data = {'challengeId': challengeId}
-            #     chaReg.insert(0, data)
-            #     with open('ch_registrant.json', 'a') as r:
-            #         json.dump(chaReg, r)
-            # with open('ch_time.json', 'a') as t:
-            #     json.dump(chaTime, t)
-            # with open('ch_submission.json', 'a') as s:
-            #     json.dump(chaSub, s)
     with open('ch_detail.json', 'a') as d:
         d.write(']' + '\n')
         d.write('}')
 
+def getChallengeInfo():
+    # 爬取challenge注册信息，发布时间信息和提交信息
+    for challengeId in range(begin, end + 1, 1):
+        if challengeId % 10 == 0:
+            print(challengeId)
+        chaReg = Challeng_Registrant(challengeId)  # list
+        chaTime = Challeng_Time(challengeId)  # dict
+        chaTime['challengeId'] = challengeId
+        chaSub = Challeng_Submission(challengeId)  # dict
+        chaSub['challengeId'] = challengeId
+        if chaReg != None:
+            data = {'challengeId': challengeId}
+            chaReg.insert(0, data)
+            with open('ch_registrant.json', 'a') as r:
+                json.dump(chaReg, r)
+        with open('ch_time.json', 'a') as t:
+            json.dump(chaTime, t)
+        with open('ch_submission.json', 'a') as s:
+            json.dump(chaSub, s)
 
 if __name__ == '__main__':
     # test()
-    # getRegistrant()
     getChallenge()
 

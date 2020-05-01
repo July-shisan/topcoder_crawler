@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+# BUAA ACT
+# guohua 20200501
 from Utils import *
 import json
 import xlwt
-
+import os
+# handle 爬取
 begin = 30055549
 end = 30095032
+# 首先根据challenge的注册信息获得handle name
 def getRegistrant():
     for challengeId in range(begin, end + 1, 1):
         chaReg = Challeng_Registrant(challengeId)  # list
@@ -15,6 +19,9 @@ def getRegistrant():
                     f.write(str(chaReg[i]['handle']))
                     f.write('\n')
 def getUser():
+    if not os.path.exists('usernamme.txt'):
+        getRegistrant()
+    # 爬取dict的三种key值
     user_index = ['handle', 'country', 'memberSince']
     count = 0
     with open('user.json', 'w') as d:
@@ -28,11 +35,10 @@ def getUser():
             count += 1
             # print(username)
             user_base = User(username)
-            if user_base != None and type(user_base) == 'dict':
-                # print(user_base)
+            if type(user_base) == dict:
                 user = {}
                 skill = getUserSkill(username)
-                if type(skill['result']['content']) == 'dict':
+                if type(skill['result']['content']) == dict:
                     skill_dict = skill['result']['content']['skills']
                     skills = []
                     for key in skill_dict:

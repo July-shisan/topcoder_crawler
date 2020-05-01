@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+# BUAA ACT
+# guohua 20200501
 from urllib.request import Request, urlopen
 import urllib.error as err
 import json
@@ -100,10 +102,10 @@ def User(username):
     try:
         response_body = urlopen(request).read()
     except err.URLError as e:
-        print(username, ': URLError:', e.reason)
+        print(username, ': UserBase URLError:', e.reason)
         return 0
     except:
-        print(username, ':Unknown Error!')
+        print(username, ':UserBase Unknown Error!')
         return 0
     else:
         response_body = json.loads(response_body)
@@ -114,10 +116,10 @@ def getUserSkill(username):
     try:
         response_body = urlopen(request).read()
     except err.URLError as e:
-        print(username, ':URLError:', e.reason)
+        print(username, ':skill URLError:', e.reason)
         return 0
     except:
-        print(username, ':Unknown Error!')
+        print(username, ':skill Unknown Error!')
         return 0
     else:
         response_body = json.loads(response_body)
